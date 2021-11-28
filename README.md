@@ -3,6 +3,9 @@ Software UART for AVR like AltSoftSerial or NeoICSerial without Arduino layer
 
 Currently only AT90USB128X is officially supported. You can adapt this library for your AVR with a few changes (look below)
 
+Official post to ask about this project, feedback is always welcome: 
+- https://www.avrfreaks.net/forum/at90swuart-software-uart-avr-altsoftserial-or-neoicserial-without-arduino-layer-at90usb128
+
 This library is like AltSoftSerial: 
 - Can simultaneously transmit and receive. Minimal interference with simultaneous use of HardwareSerial and other libraries
 - Consumes a 16 bit timer (and will not work with any libraries which need that timer) and disables some PWM pins
