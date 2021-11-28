@@ -157,4 +157,4 @@ v1 28-11-2021:
 - RX callback SWU_RegisterRxCb, like NeoICSerial
 - RX echo support: SWU_RxByte_echo, SWU_RxByte_echo_isprint, SWU_RxByte_echo_isprint_nl, SWU_RxBuffer_echo
 - FDEV_SETUP_STREAM support, now you can use printf, scanf, fprintf ...
-- main example using all features:
+- main example using all features
