@@ -43,8 +43,8 @@ The "Unusable PWM" pins can be used normally but their PWM function will not wor
 
 ## Files ready to flash in 16mhz AT90USB128x (rpk2, Teensy++ 2.0 ..)
 
-- https://github.com/therealdreg/at90swuart/blob/main/at90swuart.hex
-- https://github.com/therealdreg/at90swuart/blob/main/at90swuart.elf
+- https://github.com/therealdreg/at90swuart/blob/main/at90swuart_at90usb1287_16mhz.hex
+- https://github.com/therealdreg/at90swuart/blob/main/at90swuart_at90usb1287_16mhz.elf
 
 ## Files ready to flash in 16mhz ATMEGA328P (Arduino UNO ..) - NOT officially supported
 
