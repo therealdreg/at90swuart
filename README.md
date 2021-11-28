@@ -39,15 +39,6 @@ Each MCU and board has a pre-determined pin:
 
 The "Unusable PWM" pins can be used normally but their PWM function will not work properly, because this library uses the timer which controls that pin's PWM feature.
 
-CHANGELOG v1:
-- MIT License
-- Support for AT90USB128x: rpk2, Teensy++ 2.0, AT90USBKEY ...
-- Support TIMER1 and TIMER3. ts possible to switch between TIMER1 and TIMER3 with a simple #define
-- RX callback SWU_RegisterRxCb, like NeoICSerial
-- RX echo support: SWU_RxByte_echo, SWU_RxByte_echo_isprint, SWU_RxByte_echo_isprint_nl, SWU_RxBuffer_echo
-- FDEV_SETUP_STREAM support, now you can use printf, scanf, fprintf ...
-- main example using all features:
-
 ![demo.png](https://github.com/therealdreg/at90swuart/blob/main/demo.PNG)
 
 ## Files ready to flash in 16mhz AT90USB128x (rpk2, Teensy++ 2.0 ..)
@@ -156,3 +147,14 @@ AltSoftSerial
 
 NeoICSerial
 - https://github.com/SlashDevin/NeoICSerial
+
+## CHANGELOG
+
+v1 28-11-2021:
+- MIT License
+- Support for AT90USB128x: rpk2, Teensy++ 2.0, AT90USBKEY ...
+- Support TIMER1 and TIMER3. ts possible to switch between TIMER1 and TIMER3 with a simple #define
+- RX callback SWU_RegisterRxCb, like NeoICSerial
+- RX echo support: SWU_RxByte_echo, SWU_RxByte_echo_isprint, SWU_RxByte_echo_isprint_nl, SWU_RxBuffer_echo
+- FDEV_SETUP_STREAM support, now you can use printf, scanf, fprintf ...
+- main example using all features:
