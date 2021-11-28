@@ -11,6 +11,8 @@ This library is like AltSoftSerial:
 - Capable of running up to 31250 baud on 16 MHz AVR. Slower baud rates are recommended when other code may delay library's interrupt response
 - More info about Interrupt Latency Requirements,  Timer Usage, Usable Speed: https://www.pjrc.com/teensy/td_libs_AltSoftSerial.html
 
+**WARNING**: this library is more simple and small than AltSoftSerial/NeoICSerial. RX bytes is not stored in a internal ring buffer. If you dont want loss RX bytes just keep calling SWU_RxByte quickly or use SWU_RegisterRxCb function to handle your our ring buffer (look the main.c example).
+
 Compiled and tested in: 
 - Microchip Atmel Studio 
 
