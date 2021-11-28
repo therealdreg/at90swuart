@@ -88,7 +88,7 @@ Example for **ARDUINO UNO** (Atmega328p):
 - #define SWU_RX		PB0
 - #define SWU_TX		PB1
 
-And done! this is all the work necessary for ARDUINO UNO.
+And done! this is all the work necessary for ARDUINO UNO. Just change MCU device from AT90USB1287 to Atmega328p in Microchip Atmel Studio and compile the project.
 
 ### Adapt other stuff like AVR TIMERS etc
 
