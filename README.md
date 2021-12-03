@@ -33,8 +33,8 @@ Each MCU and board has a pre-determined pin:
 <table><tr><td> <b>Board</b> </td><td align=center> <b>Transmit</b> </td><td align=center> <b>Receive</b> </td><td align=center> <b>PWM Unusable</b></td></tr>
 <tr><td> Teensy 3.0 & 3.1 </td><td align=center> 21 </td><td align=center> 20 </td><td align=center> 22</td></tr>
 <tr><td> Teensy 2.0 </td><td align=center> 9  </td><td align=center> 10 </td><td align=center> (none)</td></tr>
-<tr><td> TIMER1: rpk2 / Teensy++ 2.0 / AT90USBKEY </td><td align=center> 25 (PB5) </td><td align=center> 4(PD4) </td><td align=center> 26, 27 (PB6, PB7)</td></tr>
-<tr><td> TIMER3: rpk2 / Teensy++ 2.0 / AT90USBKEY </td><td align=center> 16 (PC6) </td><td align=center> 17(PC7) </td><td align=center> 14, 15 (PC4, PC5)</td></tr>
+<tr><td> TIMER1: rpk2 / Teensy++ 2.0 / AT90USBKEY </td><td align=center> 25 (PB5) </td><td align=center> 4 (PD4) </td><td align=center> 26, 27 (PB6, PB7)</td></tr>
+<tr><td> TIMER3: rpk2 / Teensy++ 2.0 / AT90USBKEY </td><td align=center> 16 (PC6) </td><td align=center> 17 (PC7) </td><td align=center> 14, 15 (PC4, PC5)</td></tr>
 <tr><td> Arduino Uno </td><td align=center> 9  </td><td align=center> 8 </td><td align=center> 10</td></tr>
 <tr><td> Arduino Leonardo </td><td align=center> 5 </td><td align=center> 13 </td><td align=center> (none)</td></tr>
 <tr><td> Arduino Mega </td><td align=center> 46 </td><td align=center> 48 </td><td align=center> 44, 45</td></tr>
@@ -48,8 +48,13 @@ The "Unusable PWM" pins can be used normally but their PWM function will not wor
 
 ## Files ready to flash in 16mhz AT90USB128x (rpk2, Teensy++ 2.0 ..)
 
+### TIMER1
 - https://github.com/therealdreg/at90swuart/blob/main/at90swuart_at90usb1287_16mhz_timer1.hex
 - https://github.com/therealdreg/at90swuart/blob/main/at90swuart_at90usb1287_16mhz_timer1.elf
+
+### TIMER3
+- https://github.com/therealdreg/at90swuart/blob/main/at90swuart_at90usb1287_16mhz_timer3.hex
+- https://github.com/therealdreg/at90swuart/blob/main/at90swuart_at90usb1287_16mhz_timer3.elf
 
 ## Files ready to flash in 16mhz ATMEGA328P (Arduino UNO ..) 
 
