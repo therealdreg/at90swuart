@@ -1,7 +1,9 @@
 # at90swuart
 Software UART for AVR like AltSoftSerial or NeoICSerial without Arduino layer
 
-Currently only AT90USB128X is officially supported. You can adapt this library for your AVR with a few changes (look below)
+Currently only AT90USB128X and ATMEGA328P is supported (uncomment USE_ARDUINO_UNO define)
+
+You can adapt this library for your AVR with a few changes (look below)
 
 Official post to ask about this project, feedback is always welcome: 
 - https://www.avrfreaks.net/forum/at90swuart-software-uart-avr-altsoftserial-or-neoicserial-without-arduino-layer-at90usb128
@@ -14,7 +16,7 @@ This library is like AltSoftSerial:
 - Capable of running up to 31250 baud on 16 MHz AVR. Slower baud rates are recommended when other code may delay library's interrupt response
 - More info about Interrupt Latency Requirements,  Timer Usage, Usable Speed: https://www.pjrc.com/teensy/td_libs_AltSoftSerial.html
 
-**WARNING**: this library is more simple and small than AltSoftSerial/NeoICSerial. RX bytes is not stored in a internal ring buffer. If you dont want loss RX bytes just keep calling SWU_RxByte quickly or use SWU_RegisterRxCb function to handle your our ring buffer (look the main.c example).
+**WARNING**: this library is more simple and small than AltSoftSerial/NeoICSerial. RX bytes is not stored in a internal ring buffer. If you dont want loss RX bytes just keep calling SWU_RxByte quickly or use SWU_RegisterRxCb function to handle your our ring buffer (look the main.c example)
 
 Compiled and tested in: 
 - Microchip Atmel Studio 
@@ -24,7 +26,7 @@ Default values:
 - BAUD 9600
 - F_CPU 16000000L
 
-This class can only use one predefined Input Capture pin.  
+This class can only use one predefined Input Capture pin
 
 Each MCU and board has a pre-determined pin:
 
@@ -40,19 +42,19 @@ Each MCU and board has a pre-determined pin:
 <tr><td> Sanguino </td><td align=center> 13 </td><td align=center> 14 </td><td align=center> 12</td></tr>
 </table>
 
-The "Unusable PWM" pins can be used normally but their PWM function will not work properly, because this library uses the timer which controls that pin's PWM feature.
+The "Unusable PWM" pins can be used normally but their PWM function will not work properly, because this library uses the timer which controls that pin's PWM feature
 
 ![demo.png](https://github.com/therealdreg/at90swuart/blob/main/demo.PNG)
 
 ## Files ready to flash in 16mhz AT90USB128x (rpk2, Teensy++ 2.0 ..)
 
-- https://github.com/therealdreg/at90swuart/blob/main/at90swuart_at90usb1287_16mhz.hex
-- https://github.com/therealdreg/at90swuart/blob/main/at90swuart_at90usb1287_16mhz.elf
+- https://github.com/therealdreg/at90swuart/blob/main/at90swuart_at90usb1287_16mhz_timer1.hex
+- https://github.com/therealdreg/at90swuart/blob/main/at90swuart_at90usb1287_16mhz_timer1.elf
 
-## Files ready to flash in 16mhz ATMEGA328P (Arduino UNO ..) - NOT officially supported
+## Files ready to flash in 16mhz ATMEGA328P (Arduino UNO ..) 
 
-- https://github.com/therealdreg/at90swuart/blob/main/at90swuart_atmega328p_arduino_uno.hex
-- https://github.com/therealdreg/at90swuart/blob/main/at90swuart_atmega328p_arduino_uno.elf
+- https://github.com/therealdreg/at90swuart/blob/main/at90swuart_atmega328p_arduino_uno_timer1.hex
+- https://github.com/therealdreg/at90swuart/blob/main/at90swuart_atmega328p_arduino_uno_timer1.elf
 
 ## Teensy++ 2.0 pinout
 
@@ -108,7 +110,7 @@ Just make a the necessary changes to: at90swuart.c and at90swuart.h
 
 ### IDE and Make supported 
 
-Currently only Microchip Atmel Studio is officially supported
+Currently only Microchip Atmel Studio is supported
 
 ![atmelstudio_at90swuart.PNG](https://github.com/therealdreg/at90swuart/blob/main/atmelstudio_at90swuart.PNG)
 
@@ -155,10 +157,18 @@ NeoICSerial
 
 ## CHANGELOG
 
+v2 03-12-2021:
+- Arduino IDE support
+- convert FDEV_SETUP_STREAM macro to fdev_setup_stream for Arduino C++ compatibility
+- new define: DISABLE_FDEV_SETP to disable fdev_setup_stream for soft_uart and soft_uart_echo
+- added rx-callback mechanism for TIMER3 
+- addex .hex and .elf versions for TIMER3
+- Arduino UNO (atmega328p) is officially supported just uncomment USE_ARDUINO_UNO define
+
 v1 28-11-2021:
 - MIT License
-- Support for AT90USB128x: rpk2, Teensy++ 2.0, AT90USBKEY ...
-- Support TIMER1 and TIMER3. ts possible to switch between TIMER1 and TIMER3 with a simple #define
+- support for AT90USB128x: rpk2, Teensy++ 2.0, AT90USBKEY ...
+- support TIMER1 and TIMER3. ts possible to switch between TIMER1 and TIMER3 with a simple #define
 - RX callback SWU_RegisterRxCb, like NeoICSerial
 - RX echo support: SWU_RxByte_echo, SWU_RxByte_echo_isprint, SWU_RxByte_echo_isprint_nl, SWU_RxBuffer_echo
 - FDEV_SETUP_STREAM support, now you can use printf, scanf, fprintf ...

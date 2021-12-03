@@ -40,8 +40,12 @@ Credits:
 #define STRINGIFY(x) #x
 #define TOSTRING(x) STRINGIFY(x)
 
-#define AT90SWUART_VER 1
+#define AT90SWUART_VER 2
 #define AT90SWUART_VER_STR TOSTRING(AT90SWUART_VER)
+
+//#define DISABLE_FDEV_SETP 1 // uncomment this line to disable fdev_setup_stream
+
+//#define USE_ARDUINO_UNO  1 // uncomment this line to switch to atmega328p
 
 // ---- modify this for your board:
 #ifndef F_CPU
@@ -50,14 +54,29 @@ Credits:
 
 #define SWUSE_TIMER1 1 // comment this line to use TIMER3
 
-#ifdef SWUSE_TIMER1 // (unusable PWM PB6, PB7)
-    #define SWU_DDR     DDRB
-    #define SWU_PORT    PORTB
-    #define SWU_PIN     PIND
-    #define SWU_RX      PD4
-    #define SWU_TX      PB5
-#else
-    // TIMER3: (unusable PWM PC4, PC5)
+#ifdef SWUSE_TIMER1 // TIMER1
+    #ifdef USE_ARDUINO_UNO // atmega328p
+        #define SWU_DDR DDRB
+        #define SWU_PORT PORTB
+        #define SWU_PIN PINB
+        #define SWU_RX PB0
+        #define SWU_TX PB1
+    #else // AT90USB128
+        // (unusable PWM PB6, PB7)
+        #define SWU_DDR     DDRB
+        #define SWU_PORT    PORTB
+        #define SWU_PIN     PIND
+        #define SWU_RX      PD4
+        #define SWU_TX      PB5
+    #endif /* USE_ARDUINO_UNO */
+
+#else // TIMER3:
+    #ifdef USE_ARDUINO_UNO // atmega328p
+        #error "Arduino UNO boards (atmega328p) dont have TIMER3"
+    #endif /* USE_ARDUINO_UNO */
+
+    // AT90USB128
+    // (unusable PWM PC4, PC5)
     #define SWU_DDR     DDRC
     #define SWU_PORT    PORTC
     #define SWU_PIN     PINC

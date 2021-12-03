@@ -40,11 +40,9 @@ Credits:
 #include <avr/interrupt.h>
 #include <ctype.h>
 
-FILE soft_uart = FDEV_SETUP_STREAM(SWU_TxByte, SWU_RxByte, _FDEV_SETUP_RW);
+FILE soft_uart;
 
-FILE soft_uart_echo = FDEV_SETUP_STREAM(SWU_TxByte,
-                                        SWU_RxByte_echo,
-                                        _FDEV_SETUP_RW);
+FILE soft_uart_echo;
 
 rx_cb_t rx_cb;
 
@@ -151,8 +149,15 @@ ISR(TIMER3_COMPB_vect)
     }
     else
     {
-        sRxDone = 1;          /* Reading 8 bits is done */
-        sRxData = sRxTemp;   /* Store Rx data */
+        if (NULL != rx_cb)
+        {
+            rx_cb(sRxTemp);
+        }
+        else
+        {
+            sRxDone = 1;          /* Reading 8 bits is done */
+            sRxData = sRxTemp;   /* Store Rx data */
+        }
         TIFR3 = _BV(ICF3);    /* Clear input capture interrupt flag to read new byte */
         TIMSK3 = _BV(ICIE3) | _BV(OCIE3A);  /* Enable input capture + COMPA interrupt */
     }
@@ -225,6 +230,11 @@ ISR(TIMER3_COMPA_vect)
 /*****************************************************************************/
 void SWU_Initialize(void)
 {
+#ifndef DISABLE_FDEV_SETP
+    fdev_setup_stream(&soft_uart, SWU_TxByte, SWU_RxByte, _FDEV_SETUP_RW);
+    fdev_setup_stream(&soft_uart_echo, SWU_TxByte, SWU_RxByte_echo, _FDEV_SETUP_RW);
+#endif /* DISABLE_FDEV_SETP */
+
 #ifdef SWUSE_TIMER1
     /* Output Compare A interrupt is called immediately after initialization */
     OCR1A = TCNT1 + 1;
